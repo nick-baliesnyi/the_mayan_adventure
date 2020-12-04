@@ -99,10 +99,6 @@ public class MayanAdventureAgent : Agent
         AddReward(-1f / MaxStep);
         MoveAgent(vectorAction);
 
-        foreach(var action in vectorAction) {
-            Debug.Log(action);
-        }
-
         if (area.training)
         {
             // If fell of the platform (-2 neg reward)

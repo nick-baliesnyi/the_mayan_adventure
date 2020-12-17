@@ -99,22 +99,18 @@ public class MayanAdventureAgent : Agent
         AddReward(-1f / MaxStep);
         MoveAgent(vectorAction);
 
-        if (area.training)
+        // If fell of the platform (-2 neg reward)
+        if (this.transform.position.y < 1.68f)
         {
-            // If fell of the platform (-2 neg reward)
-            if(this.transform.position.y < 1.68f)
+            if (area.training || !mayanAdventureSettings.animateInReplay)
             {
                 SetReward(-1f);
-                base.EndEpisode();
+                EndEpisode(); 
             }
-        }
-        else if (area.training == false)
-        {
-            // If fell of the platform (-2 neg reward)
-            if(this.transform.position.y < -5)
+            else if (area.training == false && mayanAdventureSettings.animateInReplay == true)
             {
                 StartCoroutine(GameOver());
-            }
+            } 
         }
     }
     /// <summary>   
@@ -177,12 +173,12 @@ public class MayanAdventureAgent : Agent
         }
         if (collision.gameObject.tag == "goal")
         {
-            if (area.training)
+            if (area.training || !mayanAdventureSettings.animateInReplay)
             {
                 SetReward(1f);
-                base.EndEpisode();
+                EndEpisode();
             }
-            if (area.training == false)
+            else if (area.training == false && mayanAdventureSettings.animateInReplay == true)
             {
                 goal.SetActive(false);
                 StartCoroutine (goalLevel.GetComponent<GoalLevel>().Win(true));
@@ -207,14 +203,14 @@ public class MayanAdventureAgent : Agent
     {
         if (collision.gameObject.CompareTag("woodBridge") && isRock)
         {
-            if (area.training)
+            if (area.training || !mayanAdventureSettings.animateInReplay)
             {
                 SetReward(-1f);
-                base.EndEpisode();
-            }
-                
-            if (area.training == false)
+                EndEpisode();
+            }   
+            else if (area.training == false && mayanAdventureSettings.animateInReplay == true)
             {
+                Debug.Log("Running bridge crash animation!");
                 // Turn off the box collider to fall the agent
                 collision.gameObject.GetComponent<BoxCollider>().enabled = false;
                 // Animation
@@ -226,12 +222,12 @@ public class MayanAdventureAgent : Agent
         }
         if (collision.gameObject.CompareTag("fireOn") && !isRock)
         {
-            if (area.training)
+            if (area.training || !mayanAdventureSettings.animateInReplay)
             {
                 SetReward(-1f);
-                base.EndEpisode();
+                EndEpisode();
             }
-            if (area.training == false)
+            else if (area.training == false && mayanAdventureSettings.animateInReplay == true)
             {
                 StartCoroutine(GameOver());
             }
@@ -245,7 +241,7 @@ public class MayanAdventureAgent : Agent
             yield return new WaitForSeconds(8f);
             SetReward(1f);
             goal.SetActive(true);
-            base.EndEpisode();
+            EndEpisode();
     }
 
     /// <summary>   
@@ -271,6 +267,6 @@ public class MayanAdventureAgent : Agent
 
         this.gameObject.SetActive(false);
         SetReward(-1f);
-        base.EndEpisode();
+        EndEpisode();
     }   
 }

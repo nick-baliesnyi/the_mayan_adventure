@@ -6,4 +6,5 @@ public class MayanAdventureSettings : MonoBehaviour
 {
     public float agentRunSpeed;
     public float agentRotateSpeed;
+    public bool animateInReplay;
 }

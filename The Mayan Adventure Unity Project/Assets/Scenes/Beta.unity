@@ -7041,7 +7041,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53158
+  m_Name: pb_Mesh-53160
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7752,7 +7752,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53086
+  m_Name: pb_Mesh-53088
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12282,6 +12282,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1086600510}
+    - target: {fileID: 799990997045480222, guid: 0e058253a91464943aca03b6ff6a8221,
+        type: 3}
+      propertyPath: m_RaysPerDirection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1345613328738508548, guid: 0e058253a91464943aca03b6ff6a8221,
         type: 3}
       propertyPath: m_IsActive

@@ -87,12 +87,6 @@ public class MayanAdventureAgent : Agent
             ForceMode.VelocityChange);
     }
 
-    public static void DumpToConsole(object obj)
-    {
-        var output = JsonUtility.ToJson(obj, true);
-        Debug.Log(output);
-    }
-
     public override void OnActionReceived(float[] vectorAction)
     {
         // Apply a tiny negative reward every step to encourage action
@@ -210,7 +204,6 @@ public class MayanAdventureAgent : Agent
             }   
             else if (area.training == false && mayanAdventureSettings.animateInReplay == true)
             {
-                Debug.Log("Running bridge crash animation!");
                 // Turn off the box collider to fall the agent
                 collision.gameObject.GetComponent<BoxCollider>().enabled = false;
                 // Animation
